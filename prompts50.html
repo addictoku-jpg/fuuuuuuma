@@ -1,0 +1,438 @@
+<!doctype html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Claude Codeプロンプト集50選</title><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=M+PLUS+Rounded+1c:wght@500;700;800&display=swap" rel="stylesheet"><style>
+:root{--brand:#D9774F;--brand-deep:#C15640;--brand-soft:rgba(217,119,79,.12);--accent:#D9774F;--accent-deep:#B24E33;
+--bg:#F1ECE3;--paper:#FBF8F2;--ink:#2A2620;--ink-mid:#6E6557;--line:#E4D9C7;--head:'M PLUS Rounded 1c';}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans JP',-apple-system,'Hiragino Sans',sans-serif;line-height:1.7;}
+.wrap{max-width:960px;margin:0 auto;background:var(--paper);min-height:100vh;}
+header{position:sticky;top:0;z-index:20;background:var(--paper);border-bottom:2px solid var(--brand);padding:16px 28px;}
+header .top{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
+header img{width:40px;height:40px;border-radius:50%;border:2px solid var(--paper);box-shadow:0 2px 8px rgba(0,0,0,.14);}
+header .ttl{font-family:var(--head);font-weight:900;font-size:20px;color:var(--brand-deep);line-height:1.2;}
+header .ttl small{display:block;font-size:12px;color:var(--ink-mid);font-weight:500;}
+.badge{display:inline-block;background:var(--brand);color:#fff;font-family:var(--head);font-weight:900;font-size:13px;border-radius:999px;padding:4px 14px;}
+.hbtns{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--accent);border:2px solid var(--brand);color:var(--ink);
+border-radius:999px;padding:8px 18px;font-weight:900;font-size:14px;cursor:pointer;text-decoration:none;font-family:'Noto Sans JP';}
+.btn.ghost{background:var(--paper);border:1.5px solid var(--line);color:var(--brand-deep);}
+.btn.sm{padding:6px 14px;font-size:13px;}
+main{padding:24px 28px 60px;}
+.lead{font-size:15px;color:var(--ink-mid);margin-bottom:18px;}
+h2.cat{font-family:var(--head);font-weight:900;font-size:22px;color:var(--ink);margin:30px 0 14px;padding-left:12px;border-left:5px solid var(--brand);}
+.icard{background:var(--paper);border:1.5px solid var(--line);border-left:4px solid var(--brand);border-radius:12px;padding:16px 18px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.ititle{font-family:var(--head);font-weight:900;font-size:17px;color:var(--ink);margin-bottom:5px;}
+.imeta{font-size:12.5px;color:var(--ink-mid);margin-bottom:10px;}
+.idesc{font-size:14.5px;color:var(--ink);margin-bottom:10px;}
+pre.prompt{background:var(--ink);color:#ECECEA;border-radius:10px;padding:14px 16px;white-space:pre-wrap;word-break:break-word;
+font-family:ui-monospace,Menlo,monospace;font-size:13px;line-height:1.65;max-height:340px;overflow-y:auto;margin-bottom:10px;}
+.cbtns{display:flex;gap:8px;flex-wrap:wrap;}
+.toolbar{position:sticky;top:74px;z-index:15;background:var(--paper);padding:12px 0;border-bottom:1px solid var(--line);margin-bottom:8px;}
+.toolbar input{width:100%;padding:11px 16px;border:1.5px solid var(--line);border-radius:999px;font-size:15px;font-family:inherit;background:#fff;color:var(--ink);}
+.toolbar input:focus{outline:none;border-color:var(--brand);}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px;}
+.chip{background:var(--paper);border:1.5px solid var(--line);color:var(--ink-mid);border-radius:999px;padding:5px 13px;font-size:13px;font-weight:700;cursor:pointer;}
+.chip.on{background:var(--brand);border-color:var(--brand);color:#fff;}
+.count{font-size:13px;color:var(--ink-mid);margin:6px 0 4px;}
+.hidden{display:none!important;}
+footer{padding:26px 28px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-mid);text-align:center;}
+footer a{color:var(--brand-deep);}
+@media(max-width:600px){main{padding:18px 16px 50px;}header{padding:12px 16px;}}
+</style></head><body><div class="wrap"><header><div class="top"><img src="data:image/jpeg;base64,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" alt=""><div class="ttl">Claude Codeプロンプト集50選<small>ClaudeCodeチャンネル・プレゼント</small></div><span class="badge">50本</span>
+<div class="hbtns"><a class="btn ghost" href="./present.html">← 一覧へ</a><button class="btn" onclick="downloadText('pfull','claude-code-prompts-50.md',this)">⬇ 全件ダウンロード</button></div>
+</div></header><main>
+<p class="lead">全50項目。各カードのボタンから個別にコピー、上部から全件ダウンロードできます。</p>
+<h2 class="cat">ブレインストーミング・要件定義系</h2>
+<div class="icard"><div class="ititle">1. 漠然としたアイデアを言葉にする</div><div class="imeta">頭の中にあるだけのアイデアを、質問を重ねながら要件に落とし込みたいときに使う。</div><pre class="prompt" id="p1">〇〇というアイデアがあるのですが、まだ漠然としていて自分でもうまく言葉にできていません。いきなり実装や提案には進まず、まず「誰のためのものか」「何に困っているのか」「なぜ今やりたいのか」を中心に質問してください。ある程度整理できたら、最後に箇条書きの要件リストにまとめてください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p1',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">2. 新機能追加前の要件洗い出し</div><div class="imeta">機能を思いつきで作り始める前に、抜け漏れなく要件を出してもらう。</div><pre class="prompt" id="p2">既存の〇〇に「△△機能」を追加したいと考えています。実装を始める前に、必要な入力・出力・想定するユーザー操作・エラー時の挙動を洗い出してください。私が答えられる範囲で質問してもらって構わないので、対話形式で要件を固めていきましょう。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p2',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">3. 複数の設計案を比較検討する</div><div class="imeta">一つの正解に飛びつく前に、選択肢を並べて長所短所を見たいときに使う。</div><pre class="prompt" id="p3">〇〇を実現する方法として、思いつく設計アプローチを2〜3案出してください。それぞれのメリット・デメリット・実装コスト・将来の変更しやすさを表にまとめてもらえると比較しやすいです。おすすめがあれば理由付きで教えてください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p3',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">4. 既存アプリへの機能追加の影響範囲を洗い出す</div><div class="imeta">コードを触る前に、どこまで波及するかを事前に把握したいときに使う。</div><pre class="prompt" id="p4">このプロジェクトに〇〇という変更を加えると、どのファイルやどの機能に影響が出そうか調べてください。まだ実装はせず、影響範囲の一覧と、変更する際に注意すべき点だけをまとめて報告してください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p4',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">5. ユーザーストーリーとユースケースを整理する</div><div class="imeta">機能仕様を書く前段階として、利用者視点のシナリオを固めたいときに使う。</div><pre class="prompt" id="p5">〇〇というサービス（または機能）について、想定される利用者像を2〜3パターン挙げて、それぞれがどんな場面でどう使うかというユーザーストーリーを書いてください。抜けていそうな利用シーンがあれば指摘もお願いします。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p5',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">6. 技術選定・アーキテクチャの相談</div><div class="imeta">ライブラリや構成を決める前に、判断材料をもらいたいときに使う。</div><pre class="prompt" id="p6">〇〇を作るにあたって、△△と□□のどちらの技術・ライブラリを選ぶべきか迷っています。今回の要件（規模・想定利用者数・保守のしやすさ）を踏まえて、それぞれの向き不向きを整理し、判断の材料をください。まだ結論を急がず、私の意見も聞きながら一緒に決めたいです。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p6',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">7. 個人開発・小規模プロジェクトのMVPスコープを決める</div><div class="imeta">やりたいことが多すぎて手が止まっているときに、最初の一歩を絞り込む。</div><pre class="prompt" id="p7">〇〇を個人で作りたいのですが、やりたい機能が多すぎて何から手をつけるべきか決まっていません。最初のバージョン（最小限で動くもの）に入れるべき機能と、後回しにしてよい機能を分けて提案してください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p7',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">8. データの持ち方（テーブル設計）を相談する</div><div class="imeta">コードを書き始める前に、データ構造の妥当性を確認したいときに使う。</div><pre class="prompt" id="p8">〇〇というアプリで扱うデータ（△△、□□など）を、どのようなテーブル構成・データ構造で持つのが適切か相談したいです。いくつか案を出したうえで、それぞれの想定されるメリットと将来の変更のしやすさを説明してください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p8',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">9. 画面構成・UIのたたき台を相談する</div><div class="imeta">実装前に画面の骨格を言葉で固めておきたいときに使う。</div><pre class="prompt" id="p9">〇〇というツールの画面構成を考えています。主要な画面が何枚必要で、それぞれにどんな要素を置くべきか、たたき台となる構成案を出してください。まだデザインは不要なので、要素の一覧と画面同士のつながりが分かる形でお願いします。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p9',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">10. 小規模チームでの開発ルール・進め方を決める</div><div class="imeta">複数人での作業を始める前に、進め方の土台を一緒に決めたいときに使う。</div><pre class="prompt" id="p10">2〜3人でこのプロジェクトを進めることになりました。ブランチの運用ルール、コミットメッセージの書き方、レビューの流れについて、このチームの規模に合ったシンプルなルール案を提案してください。決定事項はあとで参照できるようにファイルにまとめてください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p10',this)">📋 コピー</button></div></div>
+<h2 class="cat">開発・デバッグ・レビュー系</h2>
+<div class="icard"><div class="ititle">11. 原因不明のバグを一緒に調査する</div><div class="imeta">エラーの原因が分からず手が止まっているときに、順を追って切り分けてもらう。</div><pre class="prompt" id="p11">〇〇を実行すると△△というエラーが出ますが、原因が分かっていません。憶測で直接コードを書き換えるのではなく、まずログや関連コードを確認して原因の仮説を立て、仮説を検証してから修正案を提示してください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p11',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">12. 読みにくいコードのリファクタを依頼する</div><div class="imeta">動いてはいるが読みにくいコードを整理してもらいたいときに使う。</div><pre class="prompt" id="p12">〇〇のファイルにあるコードが読みにくく、変更しづらくなっています。挙動は変えずに、命名や関数の分割、重複の整理を目的にリファクタしてください。変更前後で動作が変わっていないことを確認できる方法も教えてください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p12',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">13. 既存機能にテストを追加してもらう</div><div class="imeta">テストがない状態の機能に、安心して変更できるようにテストを足したいときに使う。</div><pre class="prompt" id="p13">〇〇の機能にまだテストがありません。主要な正常系と、想定される異常系（不正な入力や境界値など）をカバーするテストを追加してください。実装より先にテストの内容を私に見せて、それから書き進めてください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p13',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">14. PR（プルリクエスト）のレビューを依頼する</div><div class="imeta">自分の変更をマージする前に、第三者視点でチェックしてもらいたいときに使う。</div><pre class="prompt" id="p14">このブランチの変更内容をレビューしてください。バグの可能性、命名や設計上の違和感、テストの不足、既存コードとの一貫性の観点で確認し、指摘事項を優先度付きでまとめてください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p14',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">15. 既存コードの説明を求める</div><div class="imeta">自分が書いていない、または久しぶりに触るコードの理解を助けてもらいたいときに使う。</div><pre class="prompt" id="p15">〇〇のファイル（またはこの関数）が何をしているのか理解できていません。処理の流れを、前提知識がなくても分かるように順を追って説明してください。特に分かりにくい部分があれば図や具体例も使ってください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p15',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">16. 動作が遅い処理の原因調査</div><div class="imeta">体感で遅いと感じる処理があるが、どこがボトルネックか分からないときに使う。</div><pre class="prompt" id="p16">〇〇の処理が遅く感じています。どこに時間がかかっているのか調査し、原因を特定してください。改善案がある場合は、実装コストと効果の見込みを添えて提案してください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p16',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">17. セキュリティ観点でコードを見てもらう</div><div class="imeta">公開前に、基本的なセキュリティ上の見落としがないか確認したいときに使う。</div><pre class="prompt" id="p17">このプロジェクトを外部に公開する前に、入力値の扱い、認証・認可、秘密情報の管理まわりに問題がないかセキュリティ観点でレビューしてください。見つかった懸念点は、深刻度と対応の目安を添えて報告してください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p17',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">18. ライブラリのアップデートによる影響調査</div><div class="imeta">依存ライブラリを更新したいが、壊れる箇所がないか不安なときに使う。</div><pre class="prompt" id="p18">〇〇というライブラリを最新バージョンに上げたいのですが、破壊的変更がこのプロジェクトのどこに影響しそうか調べてください。実際にアップデートする前に、影響箇所と対応が必要な作業の一覧を教えてください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p18',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">19. エラーログから原因を切り分けてもらう</div><div class="imeta">大量のログの中から、問題の核心を見つけたいときに使う。</div><pre class="prompt" id="p19">このエラーログ（またはログファイルの場所）を確認して、今回の不具合に関係がありそうな行を絞り込んでください。無関係なノイズは除外したうえで、原因として考えられる箇所を根拠付きで説明してください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p19',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">20. 重複しているコードをまとめてもらう</div><div class="imeta">似たような処理があちこちにあり、共通化したいときに使う。</div><pre class="prompt" id="p20">このプロジェクト内で似たような処理が複数箇所に散らばっていないか調べてください。共通化できそうな部分が見つかったら、既存の挙動を壊さない範囲で共通関数（またはモジュール）にまとめる提案をしてください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p20',this)">📋 コピー</button></div></div>
+<h2 class="cat">スキル自作・環境構築系</h2>
+<div class="icard"><div class="ititle">21. 繰り返し作業を専用スキルにしてもらう</div><div class="imeta">毎回同じ手順で頼んでいる作業を、自分専用のコマンドにしたいときに使う。</div><pre class="prompt" id="p21">私はいつも〇〇という作業を、△△→□□という手順で依頼しています。この手順をSKILL.mdとしてスキル化し、次からは短い指示だけで同じ品質の結果が得られるようにしてください。作成後は簡単な例で動作確認もお願いします。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p21',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">22. プロジェクトのCLAUDE.mdを整備してもらう</div><div class="imeta">このプロジェクト特有のルールや前提を、毎回説明しなくて済むようにしたいときに使う。</div><pre class="prompt" id="p22">このプロジェクトについて、今後の作業で毎回伝えるのが手間になっているルールや前提（ディレクトリ構成、コーディング規約、注意点など）をCLAUDE.mdとしてまとめてください。既存のCLAUDE.mdがあれば重複させず、不足している部分だけ追記してください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p22',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">23. 特定作業専門のサブエージェントを定義してもらう</div><div class="imeta">特定の役割（レビュー専門、調査専門など）を切り出して任せたいときに使う。</div><pre class="prompt" id="p23">〇〇という作業だけを専門に担当するサブエージェントを定義してください。役割の範囲、使ってよいツール、報告してほしい形式を明確にしたうえで、実際に一度呼び出して動作を確認してください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p23',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">24. 大きな変更の前にまず計画を立ててもらう</div><div class="imeta">いきなりコードを変更されると困る規模の作業のときに使う。</div><pre class="prompt" id="p24">〇〇を実装してほしいのですが、規模が大きいのでいきなりコードは変更しないでください。まず変更方針と作業手順を計画としてまとめて提示し、私が確認して承認してから実装に進んでください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p24',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">25. 既存スキルの改善を依頼する</div><div class="imeta">すでにあるスキルの使い勝手が悪い、失敗しやすいと感じるときに使う。</div><pre class="prompt" id="p25">〇〇というスキルを使うと、いつも△△の部分でうまくいかないことが多いです。原因を確認したうえで、同じ失敗を繰り返さないようにスキルの手順や指示文を改善してください。修正後は同じ状況を想定して一度試してください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p25',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">26. 特定操作前に確認を挟むルールを設定してもらう</div><div class="imeta">取り消しにくい操作の前に、必ず一度立ち止まってほしいときに使う。</div><pre class="prompt" id="p26">〇〇のような取り消しにくい操作（削除・上書き・外部への送信など）を行う前には、実行前に必ず内容を確認してから進めるように設定してください。設定後、実際にそのような操作が発生する場面で正しく確認が入るか一緒に確かめてください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p26',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">27. 開発環境のセットアップ手順を自動化してもらう</div><div class="imeta">新しい環境やメンバーが加わったときに、毎回手作業でセットアップするのが手間なときに使う。</div><pre class="prompt" id="p27">このプロジェクトの開発環境を新しく用意する手順を洗い出し、できる範囲でスクリプトやコマンド一つで完了できるようにまとめてください。手動でしか対応できない手順が残る場合は、その理由と手順も明記してください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p27',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">28. プロジェクト構造をドキュメント化してもらう</div><div class="imeta">プロジェクトの全体像が把握しづらくなってきたときに使う。</div><pre class="prompt" id="p28">このプロジェクトのディレクトリ構成と、それぞれの役割を把握したいです。主要なフォルダ・ファイルが何を担っているかを整理し、初めて見る人でも全体像がつかめるドキュメントとしてまとめてください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p28',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">29. よく使う指示をスラッシュコマンド化してもらう</div><div class="imeta">毎回同じような長い指示を打ち込んでいるのを短縮したいときに使う。</div><pre class="prompt" id="p29">私は普段〇〇という指示を繰り返し使っています。これをスラッシュコマンドとして定義し、短いコマンド名で同じ内容の依頼ができるようにしてください。作成後、実際に一度呼び出して意図通りに動くか確認してください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p29',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">30. 自動実行してよい操作とNGな操作の線引きを相談する</div><div class="imeta">どこまで自動で進めてよいか、自分なりの基準を決めたいときに使う。</div><pre class="prompt" id="p30">このプロジェクトで作業する際、どの操作までは確認なしで自動的に進めてよく、どこからは必ず私に確認を取ってほしいか、一緒に基準を整理したいです。ファイルの削除・外部送信・課金が発生する操作などを軸に、線引きの案を提案してください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p30',this)">📋 コピー</button></div></div>
+<h2 class="cat">自動化・外部連携系</h2>
+<div class="icard"><div class="ititle">31. MCP経由でSlackへの通知をお願いする</div><div class="imeta">作業の区切りをSlackに知らせてほしいときに使う。</div><pre class="prompt" id="p31">このタスクが完了したら、Slackの〇〇チャンネルに完了報告を送ってください。内容は、何を行ったか、結果はどうだったか、次にやるべきことがあれば何かが分かる形で、太字などの装飾は使わずシンプルな文章にしてください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p31',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">32. MCP経由でNotionのタスク管理を操作してもらう</div><div class="imeta">Notionのタスクデータベースの整理を手伝ってほしいときに使う。</div><pre class="prompt" id="p32">Notionの〇〇というデータベースを確認し、期限が過ぎているタスクと、担当者が未設定のタスクを一覧にしてください。一覧を出すだけで、実際の変更（削除やステータス更新）は私が確認してから行ってください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p32',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">33. MCP経由でGoogleカレンダーの予定を確認・整理してもらう</div><div class="imeta">今週の予定を整理して見通しを立てたいときに使う。</div><pre class="prompt" id="p33">今週のGoogleカレンダーの予定を確認し、空いている時間帯と、詰まりすぎている日を教えてください。新しい予定を追加する提案がある場合も、実際の登録は行わず提案だけにとどめてください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p33',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">34. 毎朝の定型チェックを自動実行するルーティンを組んでもらう</div><div class="imeta">毎日繰り返す確認作業を自動化したいときに使う。</div><pre class="prompt" id="p34">毎朝〇〇の状態（例:未読の問い合わせ件数、サーバーのエラーログ、昨日の数値実績など）を確認し、簡単な要約を私に届けてほしいです。これを毎日決まった時間に自動で実行される仕組みとして設定してください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p34',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">35. どこまで自動化してよいか方針を相談する</div><div class="imeta">自動化の範囲を広げる前に、リスクとのバランスを一緒に考えたいときに使う。</div><pre class="prompt" id="p35">〇〇という繰り返し作業を自動化したいのですが、どこまで人の確認なしで自動実行してよいか判断がつきません。作業内容ごとにリスクの大小を整理し、自動化してよい範囲と、必ず確認を挟むべき範囲を提案してください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p35',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">36. 複数エージェントに役割分担させて大きめの作業を進めてもらう</div><div class="imeta">一人でこなすには重い作業を、役割分担して並行で進めたいときに使う。</div><pre class="prompt" id="p36">〇〇という作業をいくつかの役割（調査担当、実装担当、レビュー担当など）に分けて、複数のエージェントで並行して進めてください。それぞれの担当範囲を明確にしたうえで進行し、最後に全体の結果をまとめて報告してください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p36',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">37. 重要な変更をクラウドで深くレビューしてもらう</div><div class="imeta">リリース前など、いつもより踏み込んだレビューを受けたいときに使う。</div><pre class="prompt" id="p37">この変更はリリース前の重要なものなので、通常より踏み込んだレビューをクラウド上で行ってください。見つかった問題は深刻度別に整理し、対応が必要なものと様子見でよいものを分けて報告してください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p37',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">38. 外出先からスマホで作業の続きを進める</div><div class="imeta">外にいる間も、進行中の作業を確認・指示したいときに使う。</div><pre class="prompt" id="p38">今進めてもらっている〇〇の作業について、外出中でもスマホから進捗確認と簡単な指示出しができるようにしたいです。現状どこまで進んでいるかを共有できる状態にしておいてください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p38',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">39. 外部APIとの連携部分の動作確認をしてもらう</div><div class="imeta">外部サービスと繋いだ処理が、想定通り動くか確かめたいときに使う。</div><pre class="prompt" id="p39">〇〇の外部API連携部分について、想定しているリクエストとレスポンスの流れが正しく動くか確認してください。実際に外部へ送信・課金・投稿が発生する操作は、事前に必ず私に確認してから実行してください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p39',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">40. 週次で自動生成してほしいレポートの仕組みを作る</div><div class="imeta">毎週手作業でまとめているレポートを自動化したいときに使う。</div><pre class="prompt" id="p40">毎週〇〇のデータをもとに作っているレポートを、決まった曜日・時間に自動で下書きが作られる仕組みにしたいです。集計する項目とレポートの形式を一緒に整理したうえで、その仕組みを設定してください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p40',this)">📋 コピー</button></div></div>
+<h2 class="cat">ドキュメント・コミュニケーション系</h2>
+<div class="icard"><div class="ititle">41. 変更内容からコミットメッセージを作ってもらう</div><div class="imeta">何を直したかは分かっているが、メッセージにまとめるのが手間なときに使う。</div><pre class="prompt" id="p41">今回の変更内容を確認し、変更の目的が伝わるコミットメッセージ案を作成してください。何を変えたかだけでなく、なぜその変更が必要だったのかが分かる一文を添えてください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p41',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">42. プロジェクトのREADMEを作ってもらう</div><div class="imeta">初めて見る人にプロジェクトの概要が伝わるようにしたいときに使う。</div><pre class="prompt" id="p42">このプロジェクトのREADMEを作成してください。プロジェクトの目的、セットアップ手順、基本的な使い方が、初めて見る人にも伝わる構成でお願いします。すでにREADMEがある場合は上書きせず、不足している部分を補ってください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p42',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">43. 今日の作業内容を進捗報告としてまとめてもらう</div><div class="imeta">一日の作業を振り返り、共有用の報告文にまとめたいときに使う。</div><pre class="prompt" id="p43">今日のセッションで行った作業内容を振り返り、進捗報告としてまとめてください。完了したこと、まだ残っていること、次回着手予定のことに分けて、簡潔な文章でお願いします。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p43',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">44. 非エンジニアの上司・同僚向けに変更点を説明してもらう</div><div class="imeta">技術的な変更を、専門用語を使わずに説明してほしいときに使う。</div><pre class="prompt" id="p44">今回行った〇〇の変更内容を、エンジニアではない人にも伝わるように説明してください。専門用語はできるだけ避け、日常的な言葉や身近な例えを使って、何がどう良くなったのかが分かる文章にしてください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p44',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">45. 変更履歴(CHANGELOG)を整備してもらう</div><div class="imeta">過去の変更を振り返れる記録として残しておきたいときに使う。</div><pre class="prompt" id="p45">このプロジェクトのこれまでのコミット履歴を確認し、利用者にとって意味のある変更（機能追加・不具合修正・仕様変更など）を中心にCHANGELOGとして整理してください。細かい内部的な修正は省略して構いません。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p45',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">46. APIの使い方をドキュメント化してもらう</div><div class="imeta">自分やチームが後で見返せるAPI仕様書を作りたいときに使う。</div><pre class="prompt" id="p46">このプロジェクトが提供している〇〇のAPIについて、エンドポイント、必要なパラメータ、レスポンスの例が分かるドキュメントを作成してください。実際にリクエストを送って試す際のサンプルコードも添えてください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p46',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">47. 打ち合わせ用に技術的な論点を要約してもらう</div><div class="imeta">話し合いの前に、論点を整理して臨みたいときに使う。</div><pre class="prompt" id="p47">明日〇〇について打ち合わせがあります。ここまでの検討内容を振り返り、決めなければならない論点と、それぞれの選択肢を短くまとめてください。打ち合わせで説明しやすいよう、箇条書き中心でお願いします。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p47',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">48. 技術的負債を非エンジニアにもわかる言葉で説明してもらう</div><div class="imeta">技術的な課題を、経営層やクライアントにも理解してもらいたいときに使う。</div><pre class="prompt" id="p48">このプロジェクトに溜まっている技術的な課題（技術的負債）について、専門用語を使わずに、放置した場合のリスクと、対応した場合のメリットが伝わるように説明してください。読み手は技術に詳しくない人を想定してください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p48',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">49. 新しく参加する人向けのオンボーディング資料を作ってもらう</div><div class="imeta">新しいメンバーが加わる際に、必要な情報をまとめておきたいときに使う。</div><pre class="prompt" id="p49">このプロジェクトに新しく参加する人向けのオンボーディング資料を作成してください。最初に読むべきファイル、開発環境の準備手順、よく使うコマンドやルールが一通り分かる構成にしてください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p49',this)">📋 コピー</button></div></div>
+<div class="icard"><div class="ititle">50. リリースノートを作ってもらう</div><div class="imeta">ユーザー向けに、今回のアップデート内容を分かりやすく伝えたいときに使う。</div><pre class="prompt" id="p50">今回のアップデートで行った変更内容をもとに、利用者向けのリリースノートを作成してください。新機能・改善点・修正点を分けて、利用者にとって嬉しい変化が伝わる文章にしてください。</pre><div class="cbtns"><button class="btn sm" onclick="copyPrompt('p50',this)">📋 コピー</button></div></div>
+<pre id="pfull" class="hidden"># 🎁 Claude Codeプロンプト集50選
+
+Claude Codeに「そのまま話しかけるだけ」で使える実用プロンプトを50個、5つの場面別にまとめました。ブレスト・開発・環境構築・自動化・ドキュメント作成まで、日々の作業でよくある依頼をそのまま文章化しています。
+
+**使い方**: そのままコピーしてClaude Codeのプロンプトに貼り付けるだけで使えます。〇〇の部分は自分の状況に合わせて書き換えてください。
+
+---
+
+## 1. ブレインストーミング・要件定義系
+
+### 1. 漠然としたアイデアを言葉にする
+頭の中にあるだけのアイデアを、質問を重ねながら要件に落とし込みたいときに使う。
+```text
+〇〇というアイデアがあるのですが、まだ漠然としていて自分でもうまく言葉にできていません。いきなり実装や提案には進まず、まず「誰のためのものか」「何に困っているのか」「なぜ今やりたいのか」を中心に質問してください。ある程度整理できたら、最後に箇条書きの要件リストにまとめてください。
+```
+
+### 2. 新機能追加前の要件洗い出し
+機能を思いつきで作り始める前に、抜け漏れなく要件を出してもらう。
+```text
+既存の〇〇に「△△機能」を追加したいと考えています。実装を始める前に、必要な入力・出力・想定するユーザー操作・エラー時の挙動を洗い出してください。私が答えられる範囲で質問してもらって構わないので、対話形式で要件を固めていきましょう。
+```
+
+### 3. 複数の設計案を比較検討する
+一つの正解に飛びつく前に、選択肢を並べて長所短所を見たいときに使う。
+```text
+〇〇を実現する方法として、思いつく設計アプローチを2〜3案出してください。それぞれのメリット・デメリット・実装コスト・将来の変更しやすさを表にまとめてもらえると比較しやすいです。おすすめがあれば理由付きで教えてください。
+```
+
+### 4. 既存アプリへの機能追加の影響範囲を洗い出す
+コードを触る前に、どこまで波及するかを事前に把握したいときに使う。
+```text
+このプロジェクトに〇〇という変更を加えると、どのファイルやどの機能に影響が出そうか調べてください。まだ実装はせず、影響範囲の一覧と、変更する際に注意すべき点だけをまとめて報告してください。
+```
+
+### 5. ユーザーストーリーとユースケースを整理する
+機能仕様を書く前段階として、利用者視点のシナリオを固めたいときに使う。
+```text
+〇〇というサービス（または機能）について、想定される利用者像を2〜3パターン挙げて、それぞれがどんな場面でどう使うかというユーザーストーリーを書いてください。抜けていそうな利用シーンがあれば指摘もお願いします。
+```
+
+### 6. 技術選定・アーキテクチャの相談
+ライブラリや構成を決める前に、判断材料をもらいたいときに使う。
+```text
+〇〇を作るにあたって、△△と□□のどちらの技術・ライブラリを選ぶべきか迷っています。今回の要件（規模・想定利用者数・保守のしやすさ）を踏まえて、それぞれの向き不向きを整理し、判断の材料をください。まだ結論を急がず、私の意見も聞きながら一緒に決めたいです。
+```
+
+### 7. 個人開発・小規模プロジェクトのMVPスコープを決める
+やりたいことが多すぎて手が止まっているときに、最初の一歩を絞り込む。
+```text
+〇〇を個人で作りたいのですが、やりたい機能が多すぎて何から手をつけるべきか決まっていません。最初のバージョン（最小限で動くもの）に入れるべき機能と、後回しにしてよい機能を分けて提案してください。
+```
+
+### 8. データの持ち方（テーブル設計）を相談する
+コードを書き始める前に、データ構造の妥当性を確認したいときに使う。
+```text
+〇〇というアプリで扱うデータ（△△、□□など）を、どのようなテーブル構成・データ構造で持つのが適切か相談したいです。いくつか案を出したうえで、それぞれの想定されるメリットと将来の変更のしやすさを説明してください。
+```
+
+### 9. 画面構成・UIのたたき台を相談する
+実装前に画面の骨格を言葉で固めておきたいときに使う。
+```text
+〇〇というツールの画面構成を考えています。主要な画面が何枚必要で、それぞれにどんな要素を置くべきか、たたき台となる構成案を出してください。まだデザインは不要なので、要素の一覧と画面同士のつながりが分かる形でお願いします。
+```
+
+### 10. 小規模チームでの開発ルール・進め方を決める
+複数人での作業を始める前に、進め方の土台を一緒に決めたいときに使う。
+```text
+2〜3人でこのプロジェクトを進めることになりました。ブランチの運用ルール、コミットメッセージの書き方、レビューの流れについて、このチームの規模に合ったシンプルなルール案を提案してください。決定事項はあとで参照できるようにファイルにまとめてください。
+```
+
+---
+
+## 2. 開発・デバッグ・レビュー系
+
+### 11. 原因不明のバグを一緒に調査する
+エラーの原因が分からず手が止まっているときに、順を追って切り分けてもらう。
+```text
+〇〇を実行すると△△というエラーが出ますが、原因が分かっていません。憶測で直接コードを書き換えるのではなく、まずログや関連コードを確認して原因の仮説を立て、仮説を検証してから修正案を提示してください。
+```
+
+### 12. 読みにくいコードのリファクタを依頼する
+動いてはいるが読みにくいコードを整理してもらいたいときに使う。
+```text
+〇〇のファイルにあるコードが読みにくく、変更しづらくなっています。挙動は変えずに、命名や関数の分割、重複の整理を目的にリファクタしてください。変更前後で動作が変わっていないことを確認できる方法も教えてください。
+```
+
+### 13. 既存機能にテストを追加してもらう
+テストがない状態の機能に、安心して変更できるようにテストを足したいときに使う。
+```text
+〇〇の機能にまだテストがありません。主要な正常系と、想定される異常系（不正な入力や境界値など）をカバーするテストを追加してください。実装より先にテストの内容を私に見せて、それから書き進めてください。
+```
+
+### 14. PR（プルリクエスト）のレビューを依頼する
+自分の変更をマージする前に、第三者視点でチェックしてもらいたいときに使う。
+```text
+このブランチの変更内容をレビューしてください。バグの可能性、命名や設計上の違和感、テストの不足、既存コードとの一貫性の観点で確認し、指摘事項を優先度付きでまとめてください。
+```
+
+### 15. 既存コードの説明を求める
+自分が書いていない、または久しぶりに触るコードの理解を助けてもらいたいときに使う。
+```text
+〇〇のファイル（またはこの関数）が何をしているのか理解できていません。処理の流れを、前提知識がなくても分かるように順を追って説明してください。特に分かりにくい部分があれば図や具体例も使ってください。
+```
+
+### 16. 動作が遅い処理の原因調査
+体感で遅いと感じる処理があるが、どこがボトルネックか分からないときに使う。
+```text
+〇〇の処理が遅く感じています。どこに時間がかかっているのか調査し、原因を特定してください。改善案がある場合は、実装コストと効果の見込みを添えて提案してください。
+```
+
+### 17. セキュリティ観点でコードを見てもらう
+公開前に、基本的なセキュリティ上の見落としがないか確認したいときに使う。
+```text
+このプロジェクトを外部に公開する前に、入力値の扱い、認証・認可、秘密情報の管理まわりに問題がないかセキュリティ観点でレビューしてください。見つかった懸念点は、深刻度と対応の目安を添えて報告してください。
+```
+
+### 18. ライブラリのアップデートによる影響調査
+依存ライブラリを更新したいが、壊れる箇所がないか不安なときに使う。
+```text
+〇〇というライブラリを最新バージョンに上げたいのですが、破壊的変更がこのプロジェクトのどこに影響しそうか調べてください。実際にアップデートする前に、影響箇所と対応が必要な作業の一覧を教えてください。
+```
+
+### 19. エラーログから原因を切り分けてもらう
+大量のログの中から、問題の核心を見つけたいときに使う。
+```text
+このエラーログ（またはログファイルの場所）を確認して、今回の不具合に関係がありそうな行を絞り込んでください。無関係なノイズは除外したうえで、原因として考えられる箇所を根拠付きで説明してください。
+```
+
+### 20. 重複しているコードをまとめてもらう
+似たような処理があちこちにあり、共通化したいときに使う。
+```text
+このプロジェクト内で似たような処理が複数箇所に散らばっていないか調べてください。共通化できそうな部分が見つかったら、既存の挙動を壊さない範囲で共通関数（またはモジュール）にまとめる提案をしてください。
+```
+
+---
+
+## 3. スキル自作・環境構築系
+
+### 21. 繰り返し作業を専用スキルにしてもらう
+毎回同じ手順で頼んでいる作業を、自分専用のコマンドにしたいときに使う。
+```text
+私はいつも〇〇という作業を、△△→□□という手順で依頼しています。この手順をSKILL.mdとしてスキル化し、次からは短い指示だけで同じ品質の結果が得られるようにしてください。作成後は簡単な例で動作確認もお願いします。
+```
+
+### 22. プロジェクトのCLAUDE.mdを整備してもらう
+このプロジェクト特有のルールや前提を、毎回説明しなくて済むようにしたいときに使う。
+```text
+このプロジェクトについて、今後の作業で毎回伝えるのが手間になっているルールや前提（ディレクトリ構成、コーディング規約、注意点など）をCLAUDE.mdとしてまとめてください。既存のCLAUDE.mdがあれば重複させず、不足している部分だけ追記してください。
+```
+
+### 23. 特定作業専門のサブエージェントを定義してもらう
+特定の役割（レビュー専門、調査専門など）を切り出して任せたいときに使う。
+```text
+〇〇という作業だけを専門に担当するサブエージェントを定義してください。役割の範囲、使ってよいツール、報告してほしい形式を明確にしたうえで、実際に一度呼び出して動作を確認してください。
+```
+
+### 24. 大きな変更の前にまず計画を立ててもらう
+いきなりコードを変更されると困る規模の作業のときに使う。
+```text
+〇〇を実装してほしいのですが、規模が大きいのでいきなりコードは変更しないでください。まず変更方針と作業手順を計画としてまとめて提示し、私が確認して承認してから実装に進んでください。
+```
+
+### 25. 既存スキルの改善を依頼する
+すでにあるスキルの使い勝手が悪い、失敗しやすいと感じるときに使う。
+```text
+〇〇というスキルを使うと、いつも△△の部分でうまくいかないことが多いです。原因を確認したうえで、同じ失敗を繰り返さないようにスキルの手順や指示文を改善してください。修正後は同じ状況を想定して一度試してください。
+```
+
+### 26. 特定操作前に確認を挟むルールを設定してもらう
+取り消しにくい操作の前に、必ず一度立ち止まってほしいときに使う。
+```text
+〇〇のような取り消しにくい操作（削除・上書き・外部への送信など）を行う前には、実行前に必ず内容を確認してから進めるように設定してください。設定後、実際にそのような操作が発生する場面で正しく確認が入るか一緒に確かめてください。
+```
+
+### 27. 開発環境のセットアップ手順を自動化してもらう
+新しい環境やメンバーが加わったときに、毎回手作業でセットアップするのが手間なときに使う。
+```text
+このプロジェクトの開発環境を新しく用意する手順を洗い出し、できる範囲でスクリプトやコマンド一つで完了できるようにまとめてください。手動でしか対応できない手順が残る場合は、その理由と手順も明記してください。
+```
+
+### 28. プロジェクト構造をドキュメント化してもらう
+プロジェクトの全体像が把握しづらくなってきたときに使う。
+```text
+このプロジェクトのディレクトリ構成と、それぞれの役割を把握したいです。主要なフォルダ・ファイルが何を担っているかを整理し、初めて見る人でも全体像がつかめるドキュメントとしてまとめてください。
+```
+
+### 29. よく使う指示をスラッシュコマンド化してもらう
+毎回同じような長い指示を打ち込んでいるのを短縮したいときに使う。
+```text
+私は普段〇〇という指示を繰り返し使っています。これをスラッシュコマンドとして定義し、短いコマンド名で同じ内容の依頼ができるようにしてください。作成後、実際に一度呼び出して意図通りに動くか確認してください。
+```
+
+### 30. 自動実行してよい操作とNGな操作の線引きを相談する
+どこまで自動で進めてよいか、自分なりの基準を決めたいときに使う。
+```text
+このプロジェクトで作業する際、どの操作までは確認なしで自動的に進めてよく、どこからは必ず私に確認を取ってほしいか、一緒に基準を整理したいです。ファイルの削除・外部送信・課金が発生する操作などを軸に、線引きの案を提案してください。
+```
+
+---
+
+## 4. 自動化・外部連携系
+
+### 31. MCP経由でSlackへの通知をお願いする
+作業の区切りをSlackに知らせてほしいときに使う。
+```text
+このタスクが完了したら、Slackの〇〇チャンネルに完了報告を送ってください。内容は、何を行ったか、結果はどうだったか、次にやるべきことがあれば何かが分かる形で、太字などの装飾は使わずシンプルな文章にしてください。
+```
+
+### 32. MCP経由でNotionのタスク管理を操作してもらう
+Notionのタスクデータベースの整理を手伝ってほしいときに使う。
+```text
+Notionの〇〇というデータベースを確認し、期限が過ぎているタスクと、担当者が未設定のタスクを一覧にしてください。一覧を出すだけで、実際の変更（削除やステータス更新）は私が確認してから行ってください。
+```
+
+### 33. MCP経由でGoogleカレンダーの予定を確認・整理してもらう
+今週の予定を整理して見通しを立てたいときに使う。
+```text
+今週のGoogleカレンダーの予定を確認し、空いている時間帯と、詰まりすぎている日を教えてください。新しい予定を追加する提案がある場合も、実際の登録は行わず提案だけにとどめてください。
+```
+
+### 34. 毎朝の定型チェックを自動実行するルーティンを組んでもらう
+毎日繰り返す確認作業を自動化したいときに使う。
+```text
+毎朝〇〇の状態（例:未読の問い合わせ件数、サーバーのエラーログ、昨日の数値実績など）を確認し、簡単な要約を私に届けてほしいです。これを毎日決まった時間に自動で実行される仕組みとして設定してください。
+```
+
+### 35. どこまで自動化してよいか方針を相談する
+自動化の範囲を広げる前に、リスクとのバランスを一緒に考えたいときに使う。
+```text
+〇〇という繰り返し作業を自動化したいのですが、どこまで人の確認なしで自動実行してよいか判断がつきません。作業内容ごとにリスクの大小を整理し、自動化してよい範囲と、必ず確認を挟むべき範囲を提案してください。
+```
+
+### 36. 複数エージェントに役割分担させて大きめの作業を進めてもらう
+一人でこなすには重い作業を、役割分担して並行で進めたいときに使う。
+```text
+〇〇という作業をいくつかの役割（調査担当、実装担当、レビュー担当など）に分けて、複数のエージェントで並行して進めてください。それぞれの担当範囲を明確にしたうえで進行し、最後に全体の結果をまとめて報告してください。
+```
+
+### 37. 重要な変更をクラウドで深くレビューしてもらう
+リリース前など、いつもより踏み込んだレビューを受けたいときに使う。
+```text
+この変更はリリース前の重要なものなので、通常より踏み込んだレビューをクラウド上で行ってください。見つかった問題は深刻度別に整理し、対応が必要なものと様子見でよいものを分けて報告してください。
+```
+
+### 38. 外出先からスマホで作業の続きを進める
+外にいる間も、進行中の作業を確認・指示したいときに使う。
+```text
+今進めてもらっている〇〇の作業について、外出中でもスマホから進捗確認と簡単な指示出しができるようにしたいです。現状どこまで進んでいるかを共有できる状態にしておいてください。
+```
+
+### 39. 外部APIとの連携部分の動作確認をしてもらう
+外部サービスと繋いだ処理が、想定通り動くか確かめたいときに使う。
+```text
+〇〇の外部API連携部分について、想定しているリクエストとレスポンスの流れが正しく動くか確認してください。実際に外部へ送信・課金・投稿が発生する操作は、事前に必ず私に確認してから実行してください。
+```
+
+### 40. 週次で自動生成してほしいレポートの仕組みを作る
+毎週手作業でまとめているレポートを自動化したいときに使う。
+```text
+毎週〇〇のデータをもとに作っているレポートを、決まった曜日・時間に自動で下書きが作られる仕組みにしたいです。集計する項目とレポートの形式を一緒に整理したうえで、その仕組みを設定してください。
+```
+
+---
+
+## 5. ドキュメント・コミュニケーション系
+
+### 41. 変更内容からコミットメッセージを作ってもらう
+何を直したかは分かっているが、メッセージにまとめるのが手間なときに使う。
+```text
+今回の変更内容を確認し、変更の目的が伝わるコミットメッセージ案を作成してください。何を変えたかだけでなく、なぜその変更が必要だったのかが分かる一文を添えてください。
+```
+
+### 42. プロジェクトのREADMEを作ってもらう
+初めて見る人にプロジェクトの概要が伝わるようにしたいときに使う。
+```text
+このプロジェクトのREADMEを作成してください。プロジェクトの目的、セットアップ手順、基本的な使い方が、初めて見る人にも伝わる構成でお願いします。すでにREADMEがある場合は上書きせず、不足している部分を補ってください。
+```
+
+### 43. 今日の作業内容を進捗報告としてまとめてもらう
+一日の作業を振り返り、共有用の報告文にまとめたいときに使う。
+```text
+今日のセッションで行った作業内容を振り返り、進捗報告としてまとめてください。完了したこと、まだ残っていること、次回着手予定のことに分けて、簡潔な文章でお願いします。
+```
+
+### 44. 非エンジニアの上司・同僚向けに変更点を説明してもらう
+技術的な変更を、専門用語を使わずに説明してほしいときに使う。
+```text
+今回行った〇〇の変更内容を、エンジニアではない人にも伝わるように説明してください。専門用語はできるだけ避け、日常的な言葉や身近な例えを使って、何がどう良くなったのかが分かる文章にしてください。
+```
+
+### 45. 変更履歴(CHANGELOG)を整備してもらう
+過去の変更を振り返れる記録として残しておきたいときに使う。
+```text
+このプロジェクトのこれまでのコミット履歴を確認し、利用者にとって意味のある変更（機能追加・不具合修正・仕様変更など）を中心にCHANGELOGとして整理してください。細かい内部的な修正は省略して構いません。
+```
+
+### 46. APIの使い方をドキュメント化してもらう
+自分やチームが後で見返せるAPI仕様書を作りたいときに使う。
+```text
+このプロジェクトが提供している〇〇のAPIについて、エンドポイント、必要なパラメータ、レスポンスの例が分かるドキュメントを作成してください。実際にリクエストを送って試す際のサンプルコードも添えてください。
+```
+
+### 47. 打ち合わせ用に技術的な論点を要約してもらう
+話し合いの前に、論点を整理して臨みたいときに使う。
+```text
+明日〇〇について打ち合わせがあります。ここまでの検討内容を振り返り、決めなければならない論点と、それぞれの選択肢を短くまとめてください。打ち合わせで説明しやすいよう、箇条書き中心でお願いします。
+```
+
+### 48. 技術的負債を非エンジニアにもわかる言葉で説明してもらう
+技術的な課題を、経営層やクライアントにも理解してもらいたいときに使う。
+```text
+このプロジェクトに溜まっている技術的な課題（技術的負債）について、専門用語を使わずに、放置した場合のリスクと、対応した場合のメリットが伝わるように説明してください。読み手は技術に詳しくない人を想定してください。
+```
+
+### 49. 新しく参加する人向けのオンボーディング資料を作ってもらう
+新しいメンバーが加わる際に、必要な情報をまとめておきたいときに使う。
+```text
+このプロジェクトに新しく参加する人向けのオンボーディング資料を作成してください。最初に読むべきファイル、開発環境の準備手順、よく使うコマンドやルールが一通り分かる構成にしてください。
+```
+
+### 50. リリースノートを作ってもらう
+ユーザー向けに、今回のアップデート内容を分かりやすく伝えたいときに使う。
+```text
+今回のアップデートで行った変更内容をもとに、利用者向けのリリースノートを作成してください。新機能・改善点・修正点を分けて、利用者にとって嬉しい変化が伝わる文章にしてください。
+```
+</pre>
+<footer>ClaudeCodeチャンネル ｜ このプレゼントは自由に使ってください</footer>
+<script>
+function copyTextWithFallback(text){
+  function fb(){try{const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();
+    const ok=document.execCommand('copy');ta.remove();return ok;}catch(e){return false;}}
+  if(navigator.clipboard&&navigator.clipboard.writeText){return navigator.clipboard.writeText(text).then(()=>true).catch(fb);}
+  return Promise.resolve(fb());
+}
+function showCopyResult(btn,ok){const o=btn.dataset.o||btn.textContent;btn.dataset.o=o;
+  btn.textContent=ok?'✔ コピーしました':'✖ コピー不可 → ⬇をご利用ください';setTimeout(()=>{btn.textContent=o;},ok?1600:3200);}
+async function copyPrompt(id,btn){const ok=await copyTextWithFallback(document.getElementById(id).textContent);showCopyResult(btn,ok);}
+function downloadText(id,fn,btn){try{const t=document.getElementById(id).textContent;const b=new Blob([t],{type:'text/plain;charset=utf-8'});
+  const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=fn;document.body.appendChild(a);a.click();a.remove();
+  setTimeout(()=>URL.revokeObjectURL(u),2000);}catch(e){if(btn){const o=btn.textContent;btn.textContent='✖ 保存不可';setTimeout(()=>{btn.textContent=o;},3000);}}}
+</script></div></body></html>
